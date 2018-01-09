@@ -19,7 +19,7 @@ public class BusTest {
         passengers = new ArrayList<>();
 //        passengers.add(person1);
 //        passengers.add(person2);
-        bus = new Bus("Glasgow", 100, passengers);
+        bus = new Bus("Glasgow", 1, passengers);
 
     }
 
@@ -30,11 +30,24 @@ public class BusTest {
 
     @Test
     public void hasCapacity(){
-        assertEquals(100, bus.getCapacity());
+        assertEquals(1, bus.getCapacity());
     }
 
     @Test
     public void busStartsEmpty(){
         assertEquals(0, bus.passengerCount());
+    }
+
+    @Test
+    public void canAddPassenger(){
+        bus.addPassenger(person1);
+        assertEquals(1, bus.passengerCount());
+    }
+
+    @Test
+    public void wontAddPassengerWhenBusFull(){
+        bus.addPassenger(person1);
+        bus.addPassenger(person2);
+        assertEquals(1, bus.passengerCount());
     }
 }
