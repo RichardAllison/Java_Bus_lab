@@ -32,7 +32,7 @@ public class BusStopTest {
     @Test
     public void canRemovePersonFromQueue(){
         busStop.addPerson(person);
-        busStop.removePerson(person);
+        busStop.removePerson();
         assertEquals(0, busStop.personCount());
     }
 

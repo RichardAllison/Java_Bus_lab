@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class BusTest {
 
     Bus bus;
+    BusStop busStop;
     Person person1;
     Person person2;
     ArrayList<Person> passengers;
@@ -16,6 +17,7 @@ public class BusTest {
     public void before(){
         person1 = new Person();
         person2 = new Person();
+        busStop = new BusStop("Edinburgh");
         passengers = new ArrayList<>();
 //        passengers.add(person1);
 //        passengers.add(person2);
@@ -39,22 +41,27 @@ public class BusTest {
     }
 
     @Test
-    public void canAddPassenger(){
-        bus.addPassenger(person1);
+    public void canPickUpPassenger(){
+        busStop.addPerson(person1);
+        bus.pickUpPassenger(busStop);
         assertEquals(1, bus.passengerCount());
     }
 
     @Test
     public void wontAddPassengerWhenBusFull(){
-        bus.addPassenger(person1);
-        bus.addPassenger(person2);
+        busStop.addPerson(person1);
+        busStop.addPerson(person2);
+        bus.pickUpPassenger(busStop);
+        bus.pickUpPassenger(busStop);
         assertEquals(1, bus.passengerCount());
     }
 
     @Test
     public void canRemovePassenger(){
-        bus.addPassenger(person1);
+        busStop.addPerson(person1);
+        bus.pickUpPassenger(busStop);
         bus.removePassenger(person1);
         assertEquals(0, bus.passengerCount());
     }
+
 }
