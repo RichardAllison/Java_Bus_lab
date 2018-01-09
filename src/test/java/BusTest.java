@@ -11,7 +11,7 @@ public class BusTest {
 
     @Before
     public void before(){
-        bus = new Bus("Glasgow");
+        bus = new Bus("Glasgow", 100);
         person1 = new Person();
         person2 = new Person();
     }
@@ -19,5 +19,10 @@ public class BusTest {
     @Test
     public void hasDestination(){
         assertEquals("Glasgow", bus.getDestination());
+    }
+
+    @Test
+    public void hasCapacity(){
+        assertEquals(100, bus.getCapacity());
     }
 }
